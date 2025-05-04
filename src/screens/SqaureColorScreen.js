@@ -1,8 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import { Text, StyleSheet, View, Button, FlatList } from "react-native";
 import ColorCounter from "../components/ColorCounter";
 
 const COLOR_INCREMENT = 51;
+const reducer = (state, action) => {
+    // state === { red: number, green: number, blue: number }
+    // action === { colorToChange: 'red' || 'green' || 'blue', amount: +51 || -51 }
+    switch (action.colorToChange) {
+        case 'red':
+            return state.red + action.payload > 255 || state.red + action.payload < 0
+                ? state : { ...state, red: state.red + action.payload };
+        case 'green':
+            return state.green + action.payload > 255 || state.green + action.payload < 0
+                ? state : { ...state, green: state.green + action.payload };
+        case 'blue':
+            return state.blue + action.payload > 255 || state.blue + action.payload < 0
+                ? state : { ...state, blue: state.blue + action.payload };
+        default:
+            return state;
+    }
+};
 
 const SqaureColorScreen = () => {
     const [red, setRed] = useState(0);
@@ -14,6 +31,8 @@ const SqaureColorScreen = () => {
     console.log("Red: " + red);
     console.log("Green: " + green);
     console.log("Blue: " + blue);
+
+    const [state, dispatch] = useReducer(reducer, { red: 0, green: 0, blue: 0 });
     
     return (
         <View>

@@ -24,6 +24,10 @@ const HomeScreen = ({navigation}) => {
         onPress={() => navigation.navigate("Counter")}
       />
       <Button style={styles.button}
+        title="Count Numbers (Reducer)" 
+        onPress={() => navigation.navigate("CounterReducer")}
+      />
+      <Button style={styles.button}
         title="Splash some Color(s)" 
         onPress={() => navigation.navigate("Color")}
       />
@@ -35,6 +39,11 @@ const HomeScreen = ({navigation}) => {
         title="Choose Your Square Color" 
         onPress={() => navigation.navigate("SqaureColor")}
       />
+      <Button style={styles.button}
+        title="Enter Text" 
+        onPress={() => navigation.navigate("Text")}
+      />
+      
       
     </View>
   );
